@@ -26,8 +26,10 @@
              ngModel
              name="email"
              required
-             email>
-             <p *ngIf="">Please enter valid value</p>
+             email
+             #email="ngModel">
+             <p *ngIf="!email.valid">Please enter valid value</p>
+             <span class="help-block">Please enter a valid email!</span>
              <p>simpley another directive</p>
           </div>
         </div>
