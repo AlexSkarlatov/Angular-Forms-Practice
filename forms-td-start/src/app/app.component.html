@@ -1,9 +1,17 @@
 <div class="container">
   <div class="row">
+    <p>how to gourpu form items together</p>
+
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <!-- place ngSubmit directive on form tag -->
-        <div id="user-data">
+        <div
+        id="user-data"
+        ngModelGroup="userData"
+        #userDataReference="ngModelGroup">
+        <p>get a java script representation sent to the backend by using local references
+        attach to the html the local referrence and import it into the compenent ts file</p>
+
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text"
@@ -16,7 +24,9 @@
              <p>ng model means to tell Angular "okay this input needs to be part of the the java script representation of this form
                " thsi is what tit means to (register the controls)</p>
           </div>
-          <button class="btn btn-default" type="button">Suggest an Username</button>
+          <button class="btn btn-default"
+           type="button"
+           (click)="suggestUserName()">Suggest an Username</button>
           <div class="form-group">
             <label for="email">Mail</label>
             <input
@@ -32,6 +42,7 @@
              <span class="help-block">Please enter a valid email!</span>
              <p>simply another directive</p>
           </div>
+          <p *ngIf="!userDataReference.valid && userDataReference.touched">user data is wrongly inputted</p>
         </div>
         <div class="form-group">
           <label for="secret">Secret Questions</label>
@@ -52,6 +63,13 @@
              [(ngModel)]="answer"></textarea>
         </div>
         <p> Your Reply: {{ answer }}</p>
+
+        <div class="radio" *ngFor="let g of genders">
+          <label for="">
+            <input type="radio" name="gender" ngModel [value]="g">
+            {{ gender }}
+          </label>
+        </div>
         <button
         class="btn btn-primary"
          type="submit"

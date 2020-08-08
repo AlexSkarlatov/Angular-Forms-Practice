@@ -9,8 +9,18 @@ export class AppComponent {
   @ViewChild('f','f') signupForm: NgForm;
   defaultQuestion = 'teacher';
   answer = '';
+  genders = ['male', 'female'];
   suggestUserName() {
     const suggestedName = 'Superuser';
+    this.signupForm.setValue({
+      userData: {
+        username: this.suggestedName,
+        email: ''
+      },
+      secret: 'pet',
+      questionAnswer: '',
+      gender: 'male'
+    });
   }
   // onSubmit(form: ElementRef)
   // onSubmit(form: NgForm){
