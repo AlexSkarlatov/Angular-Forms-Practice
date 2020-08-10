@@ -10,6 +10,14 @@ export class AppComponent {
   defaultQuestion = 'teacher';
   answer = '';
   genders = ['male', 'female'];
+  userObject = {
+    username: '',
+    email: '',
+    secretQuestion: '',
+    answer: '',
+    gender: ''
+  };
+  submitted = false;
   suggestUserName() {
     const suggestedName = 'Superuser';
     // this.signupForm.setValue({
@@ -27,7 +35,7 @@ export class AppComponent {
         username: suggestedName
       }
     });
-    
+
   }
   // onSubmit(form: ElementRef)
   // onSubmit(form: NgForm){
@@ -36,7 +44,16 @@ export class AppComponent {
   // }
 
   onSubmit(){
-    console.log(this.signupForm);
+    // console.log(this.signupForm);
+    this.submitted = true;
+    this.userObject.username = this.signupForm.value.userData.username;
+    this.userObject.email = this.signupForm.value.email;
 
+    this.userObject.secretQuestion = this.signupForm.value.secret;
+
+    this.userObject.answer = this.signupForm.value.questionAnswer;
+    this.userObject.gender = this.signupForm.value.gender;
+
+    this.signupForm.reset();
   }
 }
